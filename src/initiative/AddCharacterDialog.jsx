@@ -28,7 +28,7 @@ const AddCharacterDialog = ({ editedCharacter, setEditedCharacter, setSelectedCh
           <Row>
             <Col>
               <Form.Group controlId='characterName'>
-                <Form.Label>Név</Form.Label>
+                <Form.Label>Név *</Form.Label>
                 <Form.Control
                   type='text'
                   value={editedCharacter?.name ?? ""}
@@ -40,16 +40,22 @@ const AddCharacterDialog = ({ editedCharacter, setEditedCharacter, setSelectedCh
             </Col>
             <Col xs={2}>
               <Form.Group controlId='characterName'>
-                <Form.Label>Fázisok</Form.Label>
+                <Form.Label>Fázisok *</Form.Label>
                 <Form.Control
                   type='number'
                   placeholder='1-4'
                   min='1'
                   max='4'
                   value={editedCharacter?.phases ?? "1"}
-                  autoFocus
                   onChange={(e) =>
-                    setEditedCharacter({ ...editedCharacter, phases: parseInt(e.target.value) })
+                    setEditedCharacter({
+                      ...editedCharacter,
+                      phases: e.target.value
+                        ? isNaN(parseInt(e.target.value))
+                          ? 1
+                          : parseInt(e.target.value)
+                        : "1",
+                    })
                   }
                   autoComplete='off'
                 />
