@@ -1,11 +1,12 @@
 export default function Dice({ roll }) {
   if (!roll.rolls) return <></>;
+  const sortedRoll = roll.rolls.sort((a, b) => b - a);
 
   return (
     <>
       <div className='dice'>
-        {roll.rolls.map((r, idx) => (
-          <span className='die' key={idx}>
+        {sortedRoll.map((r, idx) => (
+          <span className={`die ${r > 4 ? "hit" : ""}`} key={idx}>
             <div className='face'>{r}</div>
           </span>
         ))}

@@ -160,6 +160,7 @@ button i {
   flex: 1;
   display: flex;
   gap: 5px;
+  flex-wrap: wrap;
 }
 .toast-body .result {
   text-align: center;
@@ -174,7 +175,7 @@ button i {
   height: 100%;
 }
 
-.die.wild {
+.die.hit {
   background-color: #67eb5b;
   box-shadow: inset 0 2px #aff8a8, inset 0 -2px #52bb49, inset 2px 0 #8ee686, inset -2px 0 #52bb49,
     1px 3px 2px 1px #0003;

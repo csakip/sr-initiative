@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Toast, ToastContainer } from "react-bootstrap";
 import { useHotkeys } from "react-hotkeys-hook";
 import { roll } from "../dice";
@@ -6,11 +6,16 @@ import Dice from "./Dice";
 import RollNotification from "../classes/RollNotification";
 
 export function useDiceRoller() {
+  const teens = useRef(0);
   const [notifications, setNotifications] = useState([]);
   const rollDice = useCallback(
     (diceValue, title) => {
-      const r = roll(diceValue);
-      const newNotification = new RollNotification(title || diceValue + "d", r);
+      const r = roll(teens.current * 10 + diceValue);
+      const newNotification = new RollNotification(
+        title || teens.current * 10 + diceValue + "d",
+        r
+      );
+      teens.current = 0;
       setNotifications((prev) => [...prev, newNotification]);
       setTimeout(
         () =>
@@ -30,8 +35,17 @@ export function useDiceRoller() {
     },
     [rollDice]
   );
+
+  const setTeens = useCallback(
+    (e) => {
+      teens.current = e.key === "t" ? 1 : 2;
+    },
+    [rollDice]
+  );
+
   useHotkeys("1,2,3,4,5,6,7,8,9,0", onHotkeys);
   useHotkeys("esc", () => setNotifications([]));
+  useHotkeys("t,h", setTeens);
 
   return {
     notifications,
