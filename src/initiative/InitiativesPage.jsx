@@ -11,7 +11,7 @@ import DetailsPane from "./DetailsPane";
 import InitiativeList from "./InitiativeList";
 import { useDiceRoller } from "../common/DiceRoller";
 import { Button } from "react-bootstrap";
-import { sortCharacters, updateCharacters } from "../common/utils";
+import { updateCharacters } from "../common/utils";
 
 const Initiatives = () => {
   const [whoseTurn, setWhoseTurn] = useLocalStorageState("sr4-initiative-whoseTurn", {
@@ -130,7 +130,6 @@ const Initiatives = () => {
         editedCharacter={editedCharacter}
         setEditedCharacter={setEditedCharacter}
         setSelectedCharacterId={setSelectedCharacterId}
-        onClose={() => sortCharacters(characters)}
       />
       <DiceRoller />
     </Container>

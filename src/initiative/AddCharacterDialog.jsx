@@ -6,28 +6,23 @@ import Col from "react-bootstrap/Col";
 import { db } from "../database/dataStore";
 import { FormCheck } from "react-bootstrap";
 
-const AddCharacterDialog = ({
-  editedCharacter,
-  setEditedCharacter,
-  setSelectedCharacterId,
-  onClose,
-}) => {
+const AddCharacterDialog = ({ editedCharacter, setEditedCharacter, setSelectedCharacterId }) => {
   return (
     <Modal show={editedCharacter} onHide={() => setEditedCharacter(undefined)} size='lg'>
       <Form
         onSubmit={(e) => {
           e.preventDefault();
+          editedCharacter.name = editedCharacter.name.trim() || "Chummer";
           editedCharacter.phases = editedCharacter.phases || 1;
           editedCharacter.order = editedCharacter.order || 100000;
           editedCharacter.dontDelete = editedCharacter.dontDelete ?? editedCharacter.type === "pc";
-          db.characters
-            .put(editedCharacter, editedCharacter.id)
-            .then((ret) => setSelectedCharacterId(ret));
+          db.characters.put(editedCharacter, editedCharacter.id).then((ret) => {
+            setSelectedCharacterId(ret);
+          });
           setEditedCharacter(undefined);
-          if (onClose) onClose();
         }}>
         <Modal.Header closeButton>
-          <Modal.Title>Kezdeményezés</Modal.Title>
+          <Modal.Title>Karakter</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Row>
