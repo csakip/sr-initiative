@@ -1,10 +1,9 @@
-import useLocalStorageState from "use-local-storage-state";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { db } from "../database/dataStore";
+import { db, saveKeyValue } from "../database/dataStore";
 import AddCharacterDialog from "./AddCharacterDialog";
 import ControlButtons from "./ControlButtons";
 import DetailsPane from "./DetailsPane";
@@ -14,21 +13,15 @@ import { Button } from "react-bootstrap";
 import { updateCharacters } from "../common/utils";
 
 const Initiatives = () => {
-  const [whoseTurn, setWhoseTurn] = useLocalStorageState("sr4-initiative-whoseTurn", {
-    defaultValue: 0,
-  });
   const [editedCharacter, setEditedCharacter] = useState();
   const [selectedCharacterId, setSelectedCharacterId] = useState();
-  const [round, setRound] = useLocalStorageState("sr4-initiative-round", {
-    defaultValue: 1,
-  });
-  const [phase, setPhase] = useLocalStorageState("sr4-initiative-phase", {
-    defaultValue: 1,
-  });
 
   const { DiceRoller, rollDice } = useDiceRoller();
 
   const characters = useLiveQuery(() => db.characters.orderBy("order").toArray());
+  const whoseTurn = useLiveQuery(() => db.keyValues.get("whoseTurn"), [], 0)?.value || 0;
+  const round = useLiveQuery(() => db.keyValues.get("round"), [], 1)?.value || 1;
+  const phase = useLiveQuery(() => db.keyValues.get("phase"), [], 1)?.value || 1;
 
   function newRound(value) {
     const newValue = round + value || 1;
@@ -50,9 +43,9 @@ const Initiatives = () => {
         })
       );
     }
-    setRound(newValue);
-    setPhase(1);
-    setWhoseTurn(0);
+    saveKeyValue("round", newValue);
+    saveKeyValue("phase", 1);
+    saveKeyValue("whoseTurn", 0);
   }
 
   function stepWhoseTurn() {
@@ -61,26 +54,26 @@ const Initiatives = () => {
     );
     if (nextCharacterinThisPhase) {
       const idx = characters.indexOf(nextCharacterinThisPhase);
-      setWhoseTurn(idx);
+      saveKeyValue("whoseTurn", idx);
       setSelectedCharacterId(nextCharacterinThisPhase.id);
     } else {
       const nextCharacterInNextPhase = characters.find((character) => character.phases > phase);
       if (nextCharacterInNextPhase) {
         const idx = characters.indexOf(nextCharacterInNextPhase);
-        setPhase(phase + 1);
-        setWhoseTurn(idx);
+        saveKeyValue("phase", phase + 1);
+        saveKeyValue("whoseTurn", idx);
         setSelectedCharacterId(nextCharacterInNextPhase.id);
       } else {
         newRound(1);
-        setWhoseTurn(0);
+        saveKeyValue("whoseTurn", 0);
         setSelectedCharacterId(characters[0].id);
-        setPhase(1);
+        saveKeyValue("phase", 1);
       }
     }
   }
 
   function setWhoseTurnToCharacter(character) {
-    setWhoseTurn(characters.indexOf(character));
+    saveKeyValue("whoseTurn", characters.indexOf(character));
   }
 
   return (

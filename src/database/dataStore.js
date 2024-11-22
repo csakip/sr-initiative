@@ -5,18 +5,22 @@ export let db = new Dexie("sr-initiative");
 
 db.version(1).stores({
   characters: "++id, order",
+  keyValues: "key",
 });
 
 console.log(db);
 
 export function cleanupDb() {
   db.characters.clear();
+  db.keyValues.clear();
+}
+
+export function saveKeyValue(key, value) {
+  db.keyValues.put({ key, value });
 }
 
 export async function exportCharacters() {
-  const blob = await exportDB(db, {
-    filter: (table) => table === "characters",
-  });
+  const blob = await exportDB(db);
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
@@ -30,14 +34,11 @@ export async function importCharacters() {
   input.accept = ".json";
   input.style.display = "none";
   input.onchange = (e) => {
-    db.characters.clear();
+    cleanupDb();
     const file = e.target.files[0];
-    importInto(db, file, {
-      filter: (table) => table === "characters",
-    }).then(() => {
+    importInto(db, file).then(() => {
       input.remove();
       db.characters.count().then((count) => alert(`${count} karakter beolvasva.`));
-      db.cloud.sync();
     });
   };
   document.body.appendChild(input);
