@@ -119,23 +119,21 @@ function ControlButtons({ setEditedCharacter, characters, newRound }) {
                   </p>
                   <h3>Részletek nézet (jobb oldal)</h3>
                   <h4>Felső gombok</h4>
-                  <p>
-                    <ul>
-                      <li>
-                        <b>Megtart:</b> új harcnál törölje, vagy megmaradjon ez a karakter.
-                      </li>
-                      <li>
-                        <b>&gt;:</b> erre a karaterre mozgatja a kezdeményezést.
-                      </li>
-                      <li>
-                        <b>Ceruza:</b> a karakter nevét, fázisát lehet átírni, vagy másolatot
-                        készíteni róla.
-                      </li>
-                      <li>
-                        <b>Kuka:</b> törli a karaktert a listából (megerősítés nélkül).
-                      </li>
-                    </ul>
-                  </p>
+                  <ul>
+                    <li>
+                      <b>Megtart:</b> új harcnál törölje, vagy megmaradjon ez a karakter.
+                    </li>
+                    <li>
+                      <b>&gt;:</b> erre a karaterre mozgatja a kezdeményezést.
+                    </li>
+                    <li>
+                      <b>Ceruza:</b> a karakter nevét, fázisát lehet átírni, vagy másolatot
+                      készíteni róla.
+                    </li>
+                    <li>
+                      <b>Kuka:</b> törli a karaktert a listából (megerősítés nélkül).
+                    </li>
+                  </ul>
                   <h4>Címkék</h4>
                   <p>
                     A néhány előre definiált címkére bal gombbal kattintva hozzáadja a karakterhez.
