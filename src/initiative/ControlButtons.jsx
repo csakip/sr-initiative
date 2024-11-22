@@ -140,7 +140,9 @@ function ControlButtons({ setEditedCharacter, characters, newRound }) {
                     Újra bal gombbal a címke időtartamát növeli. Jobb gombbal csökkenti. Időtartam
                     nélküli címke mindig rajta marad. Középső gombbal eltávolítja a címkét.
                   </p>
-                  <p>Alatta egyedi címkét lehet hozzáadni. A jegyzet szabad szöveges mező.</p>
+                  <p>Alatta egyedi címkét lehet hozzáadni.</p>
+                  <h4>Jegyzetek</h4>
+                  <p>Szabad szöveges mező.</p>
                   <h4>Számlálók</h4>
                   <p>
                     Az új számláló mezőbe a nevét beírva, majd +-ra kattintva, hozzáad egy szám

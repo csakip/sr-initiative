@@ -25,7 +25,11 @@ Felette a gombbal lehet a következő karakterre léptetni a kezdeményezést. A
 
 A néhány előre definiált címkére bal gombbal kattintva hozzáadja a karakterhez. Újra bal gombbal a címke időtartamát növeli. Jobb gombbal csökkenti. Időtartam nélküli címke mindig rajta marad. Középső gombbal eltávolítja a címkét.
 
-Alatta egyedi címkét lehet hozzáadni. A jegyzet szabad szöveges mező.
+Alatta egyedi címkét lehet hozzáadni.
+
+### Jegyzetek
+
+Szabad szöveges mező.
 
 ### Számlálók
 
