@@ -7,20 +7,22 @@ import { db } from "../database/dataStore";
 import { FormCheck } from "react-bootstrap";
 
 const AddCharacterDialog = ({ editedCharacter, setEditedCharacter, setSelectedCharacterId }) => {
+  function submit(e, copy = false) {
+    e.preventDefault();
+    if (copy) editedCharacter.id = undefined;
+    editedCharacter.name = editedCharacter.name.trim() || "Chummer";
+    editedCharacter.phases = editedCharacter.phases || 1;
+    editedCharacter.order = editedCharacter.order || 100000;
+    editedCharacter.dontDelete = editedCharacter.dontDelete ?? editedCharacter.type === "pc";
+    db.characters.put(editedCharacter, editedCharacter.id).then((ret) => {
+      setSelectedCharacterId(ret);
+    });
+    setEditedCharacter(undefined);
+  }
+
   return (
     <Modal show={editedCharacter} onHide={() => setEditedCharacter(undefined)} size='lg'>
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-          editedCharacter.name = editedCharacter.name.trim() || "Chummer";
-          editedCharacter.phases = editedCharacter.phases || 1;
-          editedCharacter.order = editedCharacter.order || 100000;
-          editedCharacter.dontDelete = editedCharacter.dontDelete ?? editedCharacter.type === "pc";
-          db.characters.put(editedCharacter, editedCharacter.id).then((ret) => {
-            setSelectedCharacterId(ret);
-          });
-          setEditedCharacter(undefined);
-        }}>
+      <Form onSubmit={submit}>
         <Modal.Header closeButton>
           <Modal.Title>Karakter</Modal.Title>
         </Modal.Header>
@@ -94,13 +96,18 @@ const AddCharacterDialog = ({ editedCharacter, setEditedCharacter, setSelectedCh
             </Col>
           </Row>
         </Modal.Body>
-        <Modal.Footer className='justify-content-between'>
+        <Modal.Footer className='justify-content-end'>
           <Button
             variant='secondary'
             onClick={() => setEditedCharacter(undefined)}
-            className='float-start'>
+            className='me-auto'>
             Bezár
           </Button>
+          {editedCharacter?.id && (
+            <Button variant='primary' onClick={(e) => submit(e, true)}>
+              Másolat mentése
+            </Button>
+          )}
           <Button variant='primary' type='submit'>
             Ment
           </Button>
