@@ -38,7 +38,9 @@ export async function importCharacters() {
     const file = e.target.files[0];
     importInto(db, file).then(() => {
       input.remove();
-      db.characters.count().then((count) => alert(`${count} karakter beolvasva.`));
+      db.characters
+        .count()
+        .then((count) => setTimeout(() => alert(`${count} karakter beolvasva.`), 0));
     });
   };
   document.body.appendChild(input);
