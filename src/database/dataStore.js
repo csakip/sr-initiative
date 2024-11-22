@@ -8,8 +8,6 @@ db.version(1).stores({
   keyValues: "key",
 });
 
-console.log(db);
-
 export function cleanupDb() {
   db.characters.clear();
   db.keyValues.clear();
