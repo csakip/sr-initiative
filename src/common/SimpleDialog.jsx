@@ -12,6 +12,7 @@ export function useSimpleDialog() {
     cancelButton: undefined,
     input: undefined,
     onClose: undefined,
+    size: undefined,
   });
 
   function openModal({
@@ -21,6 +22,7 @@ export function useSimpleDialog() {
     cancelButton,
     input,
     defaultInputText,
+    size,
     onClose = () => {},
   }) {
     setState((prevState) => ({
@@ -33,6 +35,7 @@ export function useSimpleDialog() {
       input,
       defaultInputText,
       onClose,
+      size,
     }));
   }
 
@@ -43,7 +46,7 @@ export function useSimpleDialog() {
   }
 
   function SimpleDialog() {
-    const { open, title, body, okButton, cancelButton, input, defaultInputText } = state;
+    const { open, title, body, okButton, cancelButton, input, defaultInputText, size } = state;
     const [inputText, setInputText] = useState(defaultInputText || "");
     const inputRef = useRef(null);
 
@@ -63,6 +66,7 @@ export function useSimpleDialog() {
     return (
       <Modal
         show={open}
+        size={size}
         onHide={() => {
           closeModal(undefined, undefined);
         }}>
