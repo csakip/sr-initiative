@@ -16,10 +16,6 @@ function ControlButtons({ setEditedCharacter, characters, newRound }) {
       <Nav>
         {characters?.length > 0 && (
           <>
-            <Nav.Link onClick={() => sortCharacters(characters)}>
-              <i className='bi bi-filter'></i>
-              <span>Sorrendbe</span>
-            </Nav.Link>
             <Nav.Link onClick={() => startNewRound()}>
               <i className='bi bi-arrow-clockwise'></i>
               <span>Köv. kör</span>
@@ -27,6 +23,10 @@ function ControlButtons({ setEditedCharacter, characters, newRound }) {
             <Nav.Link onClick={() => startNewRound(-1)}>
               <i className='bi bi-arrow-up'></i>
               <span>Vissza 1 kört</span>
+            </Nav.Link>
+            <Nav.Link onClick={() => sortCharacters(characters)}>
+              <i className='bi bi-filter'></i>
+              <span>Sorrendbe</span>
             </Nav.Link>
             <hr />
           </>

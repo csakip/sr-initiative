@@ -24,6 +24,12 @@ export function HelpText() {
           <b>Új harc:</b> kitöröl minden njk-t, a kezdeményezés értékeket és 1. kör 1. fázisra áll,
           illetve az első karakterre.
         </li>
+        <li>
+          <b>Mentés fájlba:</b> letölti fájlba az aktuális állapotot.
+        </li>
+        <li>
+          <b>Beotöltés fájlból:</b> fel lehet tölteni egy elmetett állapotot.
+        </li>
       </ul>
       <h3>Karakter lista</h3>
       <p>
