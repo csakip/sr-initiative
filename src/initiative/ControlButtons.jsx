@@ -62,6 +62,16 @@ function ControlButtons({ setEditedCharacter, characters, newRound }) {
             <hr />
           </>
         )}
+        {characters?.length > 0 && (
+          <Nav.Link onClick={() => exportCharacters()}>
+            <i className='bi bi-download'></i>
+            <span>Mentés fájlba</span>
+          </Nav.Link>
+        )}
+        <Nav.Link onClick={() => importCharacters()}>
+          <i className='bi bi-upload'></i>
+          <span>Betöltés fájlból</span>
+        </Nav.Link>
         <Nav.Link
           onClick={() => {
             openModal({
@@ -73,16 +83,6 @@ function ControlButtons({ setEditedCharacter, characters, newRound }) {
           }}>
           <i className='bi bi-question-circle'></i>
           <span>Súgó</span>
-        </Nav.Link>
-        {characters?.length > 0 && (
-          <Nav.Link onClick={() => exportCharacters()}>
-            <i className='bi bi-download'></i>
-            <span>Mentés fájlba</span>
-          </Nav.Link>
-        )}
-        <Nav.Link onClick={() => importCharacters()}>
-          <i className='bi bi-upload'></i>
-          <span>Betöltés fájlból</span>
         </Nav.Link>
       </Nav>
       <SimpleDialog />
