@@ -206,3 +206,46 @@ button i {
 .character-name.grey {
   color: #888;
 }
+
+.sidebar {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  transition: width 0.3s linear;
+  width: 170px;
+
+  > .nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  i {
+    margin-right: 1em;
+  }
+
+  a {
+    color: var(--bs-secondary-color);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  a:hover,
+  a:focus {
+    color: var(--bs-heading-color) !important;
+  }
+
+  hr {
+    margin-right: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 50px;
+
+    span {
+      display: none;
+    }
+  }
+}

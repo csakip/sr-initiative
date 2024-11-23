@@ -79,7 +79,7 @@ const Initiatives = () => {
   return (
     <Container fluid className='px-3 initiatives'>
       <Row className='pt-2'>
-        <Col xs='1'>
+        <Col xs='auto' className='p-0'>
           <ControlButtons
             setEditedCharacter={setEditedCharacter}
             characters={characters}
@@ -87,7 +87,7 @@ const Initiatives = () => {
             setSelectedCharacterId={setSelectedCharacterId}
           />
         </Col>
-        <Col>
+        <Col xs={10} md className='mb-3'>
           <h5>
             {characters?.length > 0 && (
               <>
@@ -102,7 +102,7 @@ const Initiatives = () => {
             {...{ characters, selectedCharacterId, setSelectedCharacterId, whoseTurn, phase }}
           />
         </Col>
-        <Col xs='6'>
+        <Col xs='12' md>
           <div className='scrollable-menu'>
             {selectedCharacterId && (
               <DetailsPane
