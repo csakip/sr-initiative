@@ -8,7 +8,7 @@
 - **Új karakter:** felugró ablakban meg lehet adni egy karaktert. Név és fázisok kötelező, a Kezdeményezést később is meg lehet adni. Ha a "Megtart" be van jelölve, akkor "Új harc" indításakor nem törli a karaktert a listából.
 - **Új harc:** kitöröl minden njk-t, a kezdeményezés értékeket és 1. kör 1. fázisra áll, illetve az első karakterre.
 - **Mentés fájlba:** letölti fájlba az aktuális állapotot.
-- **Beotöltés fájlból:** fel lehet tölteni egy elmetett állapotot.
+- **Betöltés fájlból:** fel lehet tölteni egy elmetett állapotot.
 
 ## Karakter lista
 

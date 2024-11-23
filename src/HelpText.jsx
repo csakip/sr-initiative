@@ -28,7 +28,7 @@ export function HelpText() {
           <b>Mentés fájlba:</b> letölti fájlba az aktuális állapotot.
         </li>
         <li>
-          <b>Beotöltés fájlból:</b> fel lehet tölteni egy elmetett állapotot.
+          <b>Betöltés fájlból:</b> fel lehet tölteni egy elmetett állapotot.
         </li>
       </ul>
       <h3>Karakter lista</h3>
