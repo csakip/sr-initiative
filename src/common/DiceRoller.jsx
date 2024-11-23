@@ -12,7 +12,7 @@ export function useDiceRoller() {
     (diceValue, title) => {
       const r = roll(teens.current * 10 + diceValue);
       const newNotification = new RollNotification(
-        title || teens.current * 10 + diceValue + "d",
+        title || teens.current * 10 + diceValue + " kocka",
         r
       );
       teens.current = 0;
