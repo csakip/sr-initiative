@@ -47,19 +47,13 @@ function ControlButtons({ setEditedCharacter, characters, newRound }) {
               openModal({
                 open: true,
                 title: "Törlés",
-                body: "Törlösz minden njk-t és a játékosok kezdeményezését?",
+                body: "Törlösz minden nem megtartott karaktert és a megtartottak kezdeményezését?",
                 cancelButton: "Mégse",
                 onClose: (ret) => {
                   if (ret) {
                     newRound();
                     db.characters.bulkDelete(
-                      characters
-                        .filter(
-                          (c) =>
-                            (c.dontDelete === undefined && c.type === "npc") ||
-                            c.dontDelete === false
-                        )
-                        .map((c) => c.id)
+                      characters.filter((c) => !c.dontDelete).map((c) => c.id)
                     );
                     db.characters.toCollection().modify({ initiative: undefined });
                   }
@@ -98,8 +92,9 @@ function ControlButtons({ setEditedCharacter, characters, newRound }) {
                     </li>
                     <li>
                       <b>Új karakter:</b> új karakter ablakban meg lehet adni egy karaktert. Név és
-                      fázisok kötelező, a Kezdeményezést később is meg lehet adni. Ha játékos, akkor
-                      &quot;Új harc&quot; indításakor nem törli a karaktert a listából.
+                      fázisok kötelező, a Kezdeményezést később is meg lehet adni. Ha a
+                      &quot;Megtart&quot; be van jelölve, akkor &quot;Új harc&quot; indításakor nem
+                      törli a karaktert a listából.
                     </li>
                     <li>
                       <b>Új harc:</b> kitöröl minden njk-t, a kezdeményezés értékeket és 1. kör 1.
@@ -120,9 +115,6 @@ function ControlButtons({ setEditedCharacter, characters, newRound }) {
                   <h3>Részletek nézet (jobb oldal)</h3>
                   <h4>Felső gombok</h4>
                   <ul>
-                    <li>
-                      <b>Megtart:</b> új harcnál törölje, vagy megmaradjon ez a karakter.
-                    </li>
                     <li>
                       <b>&gt;:</b> erre a karaterre mozgatja a kezdeményezést.
                     </li>

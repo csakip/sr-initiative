@@ -13,7 +13,6 @@ const AddCharacterDialog = ({ editedCharacter, setEditedCharacter, setSelectedCh
     editedCharacter.name = editedCharacter.name.trim() || "Chummer";
     editedCharacter.phases = editedCharacter.phases || 1;
     editedCharacter.order = editedCharacter.order || 100000;
-    editedCharacter.dontDelete = editedCharacter.dontDelete ?? editedCharacter.type === "pc";
     db.characters.put(editedCharacter, editedCharacter.id).then((ret) => {
       setSelectedCharacterId(ret);
     });
@@ -81,14 +80,14 @@ const AddCharacterDialog = ({ editedCharacter, setEditedCharacter, setSelectedCh
             </Col>
             <Col className='text-center' xs='auto'>
               <Form.Group controlId='characterName'>
-                <Form.Label>Játékos</Form.Label>
+                <Form.Label>Megtart</Form.Label>
                 <FormCheck
                   className='mt-1'
-                  checked={editedCharacter?.type === "pc"}
+                  checked={!!editedCharacter?.dontDelete}
                   onChange={(e) =>
                     setEditedCharacter({
                       ...editedCharacter,
-                      type: e.target.checked ? "pc" : "npc",
+                      dontDelete: e.target.checked,
                     })
                   }
                 />

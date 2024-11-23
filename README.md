@@ -5,18 +5,17 @@
 - **Sorrendbe:** előfordulhat, hogy a karakterek nem kezdeményezési sorrendben vannak a listában. Ez sorba rakja őket.
 - **Új kör:** új kört kezd, átugorva a maradék fázisokat és karaktereket.
   - **\-1:** egy kört visszalép (a címkék nem számolnak visszafelé ilyenkor!)
-- **Új karakter:** új karakter ablakban meg lehet adni egy karaktert. Név és fázisok kötelező, a Kezdeményezést később is meg lehet adni. Ha játékos, akkor "Új harc" indításakor nem törli a karaktert a listából.
+- **Új karakter:** új karakter ablakban meg lehet adni egy karaktert. Név és fázisok kötelező, a Kezdeményezést később is meg lehet adni. Ha a "Megtart" be van jelölve, akkor "Új harc" indításakor nem törli a karaktert a listából.
 - **Új harc:** kitöröl minden njk-t, a kezdeményezés értékeket és 1. kör 1. fázisra áll, illetve az első karakterre.
 
 ## Karakter lista
 
-Felette a gombbal lehet a következő karakterre léptetni a kezdeményezést. A listán a háromszög jelőli, hogy ki jön most. A lista elemeit egérrel át lehet rendezni. A sor elején a ceruza (vagy szám) gombra kattintva lehet átírni a kezdeményezés értékét.
+Felette a nyíl gombbal lehet a következő karakterre léptetni a kezdeményezést. A listán a háromszög jelőli, hogy ki jön most. A lista elemeit egérrel át lehet rendezni. A sor elején a ceruza (vagy szám) gombra kattintva lehet átírni a kezdeményezés értékét.
 
 ## Részletek nézet (jobb oldal)
 
 ### Felső gombok
 
-- **Megtart:** új harcnál törölje, vagy megmaradjon ez a karakter.
 - **\>:** erre a karaterre mozgatja a kezdeményezést.
 - **Ceruza:** a karakter nevét, fázisát lehet átírni, vagy másolatot készíteni róla.
 - **Kuka:** törli a karaktert a listából (megerősítés nélkül).

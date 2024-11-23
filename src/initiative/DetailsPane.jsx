@@ -54,18 +54,6 @@ function DetailsPane({
           </Col>
           <Col className='text-end align-middle' xs={4}>
             <div className='d-flex gap-2 flex-wrap justify-content-end align-items-center'>
-              <Form.Group controlId='characterName'>
-                <Form.Check
-                  label='Megtart'
-                  title='Új harcnál nem törlendő'
-                  checked={!!selectedCharacter.dontDelete}
-                  onChange={(e) =>
-                    db.characters
-                      .where({ id: selectedCharacter.id })
-                      .modify({ dontDelete: e.target.checked })
-                  }
-                />
-              </Form.Group>
               <Button
                 title='Ő jön'
                 onClick={() => setWhoseTurnToCharacter(selectedCharacter)}
