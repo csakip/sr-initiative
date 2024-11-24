@@ -59,7 +59,13 @@ export function useDiceRoller() {
       <ToastContainer position='bottom-end' className='p-3'>
         {notifications.map((notification) => (
           <Toast
-            bg={notification.roll.glitch ? "danger" : "success"}
+            bg={
+              notification.roll.glitch
+                ? "danger"
+                : notification.roll.hits > 0
+                ? "success"
+                : "secondary"
+            }
             key={notification.id}
             onClose={() => setNotifications(notifications.filter((n) => n !== notification))}>
             <Toast.Header>
