@@ -26,19 +26,25 @@ export async function exportCharacters() {
   link.click();
 }
 
-export async function importCharacters() {
+export async function importCharacters(add) {
   const input = document.createElement("input");
   input.type = "file";
   input.accept = ".json";
   input.style.display = "none";
   input.onchange = (e) => {
-    cleanupDb();
+    // if (!add) cleanupDb();
     const file = e.target.files[0];
-    importInto(db, file).then(() => {
+    importInto(db, file, {
+      clearTablesBeforeImport: !add,
+      overwriteValues: !add,
+      filter: (table) => !add || table === "characters",
+      transform: (table, value, key) => {
+        console.log(table, value, key);
+        value.id = undefined;
+        return { key, value };
+      },
+    }).then(() => {
       input.remove();
-      db.characters
-        .count()
-        .then((count) => setTimeout(() => alert(`${count} karakter beolvasva.`), 0));
     });
   };
   document.body.appendChild(input);

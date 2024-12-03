@@ -68,7 +68,22 @@ function ControlButtons({ setEditedCharacter, characters, newRound }) {
             <span>Mentés fájlba</span>
           </Nav.Link>
         )}
-        <Nav.Link onClick={() => importCharacters()}>
+        <Nav.Link
+          onClick={() => {
+            openModal({
+              open: true,
+              title: "Betöltés fájlból",
+              body: "Lecseréled a betöltött karakterekre a mostaniakat, vagy hozzáadod őket a listához?",
+              onClose: (add) => {
+                if (add === undefined) return;
+                console.log(add);
+                importCharacters(add);
+              },
+              okButton: "Hozzáad",
+              cancelButton: "Lecserél",
+              cancelButtonVariant: "danger",
+            });
+          }}>
           <i className='bi bi-upload'></i>
           <span>Betöltés fájlból</span>
         </Nav.Link>

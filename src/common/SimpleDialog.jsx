@@ -13,6 +13,7 @@ export function useSimpleDialog() {
     input: undefined,
     onClose: undefined,
     size: undefined,
+    cancelButtonVariant: "secondary",
   });
 
   function openModal({
@@ -24,6 +25,7 @@ export function useSimpleDialog() {
     defaultInputText,
     size,
     onClose = () => {},
+    cancelButtonVariant = "secondary",
   }) {
     setState((prevState) => ({
       ...prevState,
@@ -36,6 +38,7 @@ export function useSimpleDialog() {
       defaultInputText,
       onClose,
       size,
+      cancelButtonVariant,
     }));
   }
 
@@ -46,7 +49,17 @@ export function useSimpleDialog() {
   }
 
   function SimpleDialog() {
-    const { open, title, body, okButton, cancelButton, input, defaultInputText, size } = state;
+    const {
+      open,
+      title,
+      body,
+      okButton,
+      cancelButton,
+      cancelButtonVariant,
+      input,
+      defaultInputText,
+      size,
+    } = state;
     const [inputText, setInputText] = useState(defaultInputText || "");
     const inputRef = useRef(null);
 
@@ -93,7 +106,7 @@ export function useSimpleDialog() {
         <Modal.Footer className='d-flex justify-content-between'>
           {cancelButton ? (
             <Button
-              variant='secondary'
+              variant={cancelButtonVariant}
               onClick={(e) => {
                 closeModal(e, false);
               }}>
