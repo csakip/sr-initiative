@@ -42,7 +42,6 @@ function DetailsPane({
   );
 
   const updateInjury = (injury, isStun) => {
-    console.log(injury, isStun);
     if (isStun) {
       db.characters.update(selectedCharacterId, { stun: injury });
     } else {
