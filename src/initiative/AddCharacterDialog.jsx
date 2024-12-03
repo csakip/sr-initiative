@@ -78,6 +78,42 @@ const AddCharacterDialog = ({ editedCharacter, setEditedCharacter, setSelectedCh
                 />
               </Form.Group>
             </Col>
+            <Col xs={2}>
+              <Form.Group controlId='characterRoll'>
+                <Form.Label>Max kábulás</Form.Label>
+                <Form.Control
+                  type='number'
+                  value={editedCharacter?.maxStun ?? ""}
+                  autoComplete='off'
+                  min={3}
+                  max={18}
+                  onChange={(e) => {
+                    setEditedCharacter({
+                      ...editedCharacter,
+                      maxStun: e.target.value ? parseInt(e.target.value) : 0,
+                    });
+                  }}
+                />
+              </Form.Group>
+            </Col>
+            <Col xs={2}>
+              <Form.Group controlId='characterRoll'>
+                <Form.Label>Max fizikai</Form.Label>
+                <Form.Control
+                  type='number'
+                  value={editedCharacter?.maxPhysical ?? ""}
+                  autoComplete='off'
+                  min={3}
+                  max={18}
+                  onChange={(e) => {
+                    setEditedCharacter({
+                      ...editedCharacter,
+                      maxPhysical: e.target.value ? parseInt(e.target.value) : 0,
+                    });
+                  }}
+                />
+              </Form.Group>
+            </Col>
             <Col className='text-center' xs='auto'>
               <Form.Group controlId='characterName'>
                 <Form.Label>Megtart</Form.Label>

@@ -17,8 +17,9 @@ export function HelpText() {
         </li>
         <li>
           <b>Új karakter:</b> felugró ablakban meg lehet adni egy karaktert. Név és fázisok
-          kötelező, a Kezdeményezést később is meg lehet adni. Ha a &quot;Megtart&quot; be van
-          jelölve, akkor &quot;Új harc&quot; indításakor nem törli a karaktert a listából.
+          kötelező, a Kezdeményezést később is meg lehet adni. Max sebesülés szintek beállíthatóak.
+          Ha a &quot;Megtart&quot; be van jelölve, akkor &quot;Új harc&quot; indításakor nem törli a
+          karaktert a listából.
         </li>
         <li>
           <b>Új harc:</b> kitöröl minden njk-t, a kezdeményezés értékeket és 1. kör 1. fázisra áll,
@@ -61,6 +62,11 @@ export function HelpText() {
         rajta marad. Középső gombbal eltávolítja a címkét.
       </p>
       <p>Alatta egyedi címkét lehet hozzáadni.</p>
+      <h4>Sebesülések</h4>
+      <p>
+        A kockákba kattintva beállítja a sebesülés szintjét. Az aktuális szintre újra kattintva,
+        kitörli azt.
+      </p>
       <h4>Jegyzetek</h4>
       <p>Szabad szöveges mező.</p>
       <h4>Számlálók</h4>

@@ -240,6 +240,55 @@ button i {
   }
 }
 
+.health-bar-box {
+  width: 28px;
+  height: 28px;
+  border-top: 1px solid #6c757d;
+  border-bottom: 1px solid #6c757d;
+  border-left: 1px solid #6c757d;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.health-bar-box:first-child {
+  border-right: 1px solid #6c757d;
+}
+
+.health-bar-box:hover:not(.disabled),
+.health-bar-box:hover:hover ~ .health-bar-box:not(.disabled) {
+  background-color: var(--bs-secondary-bg);
+  color: var(--bs-secondary-color);
+}
+.health-bar-box.disabled {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--bs-border-color),
+    var(--bs-border-color) 5px,
+    transparent 5px,
+    transparent 10px
+  );
+  color: transparent !important;
+  cursor: default;
+}
+.health-bar-box.checked {
+  color: var(--bs-secondary-color) !important;
+}
+
+.health-bar-box:nth-child(3n-2),
+.health-bar-box:nth-child(3n-1),
+.health-bar-box:nth-child(3n) {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-bg);
+}
+.health-bar-box:nth-child(6n-2),
+.health-bar-box:nth-child(6n-1),
+.health-bar-box:nth-child(6n) {
+  background-color: var(--bs-secondary-bg-subtle);
+  color: var(--bs-secondary-bg-subtle);
+}
+
 @media (max-width: 1024px) {
   .sidebar {
     width: 50px;

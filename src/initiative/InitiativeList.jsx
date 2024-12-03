@@ -73,13 +73,28 @@ function InitiativeList({
                   </Col>
                   <Col>
                     <span
-                      className={`character-name me-3 ${phase > character.phases ? "grey" : ""}`}>
+                      style={{ width: "120px" }}
+                      className={`d-inline-block character-name me-3 ${
+                        phase > character.phases ? "grey" : ""
+                      }`}>
                       {character.name}
                     </span>
                     <span
                       className={`character-name me-3 ${phase > character.phases ? "grey" : ""}`}>
                       {character.phases ?? 1} fázis
                     </span>
+                    {character.stun > 0 && (
+                      <span
+                        className={`character-name me-2 ${phase > character.phases ? "grey" : ""}`}>
+                        K: -{Math.ceil(character.stun / 3)}
+                      </span>
+                    )}
+                    {character.physical > 0 && (
+                      <span
+                        className={`character-name me-3 ${phase > character.phases ? "grey" : ""}`}>
+                        F: -{Math.ceil(character.physical / 3)}
+                      </span>
+                    )}
                     {character.tags?.map((tag) => (
                       <Badge key={tag.label} className='me-1'>
                         {tag.label} {tag.length}

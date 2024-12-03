@@ -9,6 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 import reactTextareaAutosize from "react-textarea-autosize";
 import { debounce } from "lodash";
 import Counter from "../common/Counter";
+import HealthBarEditor from "../common/HealthBarEditor";
 
 function DetailsPane({
   selectedCharacterId,
@@ -39,6 +40,15 @@ function DetailsPane({
     }, 1000),
     []
   );
+
+  const updateInjury = (injury, isStun) => {
+    console.log(injury, isStun);
+    if (isStun) {
+      db.characters.update(selectedCharacterId, { stun: injury });
+    } else {
+      db.characters.update(selectedCharacterId, { physical: injury });
+    }
+  };
 
   function updateCharNotes(text) {
     setCharNotes(text);
@@ -77,6 +87,27 @@ function DetailsPane({
         <Row>
           <Col>
             <Tags characters={characters} selectedCharacter={selectedCharacter} />
+          </Col>
+        </Row>
+
+        <Row className='mt-3'>
+          <Col xs={1}>Kábulás</Col>
+          <Col>
+            <HealthBarEditor
+              injury={selectedCharacter.stun}
+              setInjury={(e) => updateInjury(e, true)}
+              max={selectedCharacter.maxStun}
+            />
+          </Col>
+        </Row>
+        <Row className='mt-1'>
+          <Col xs={1}>Fizikai</Col>
+          <Col>
+            <HealthBarEditor
+              injury={selectedCharacter.physical}
+              setInjury={(e) => updateInjury(e, false)}
+              max={selectedCharacter.maxPhysical}
+            />
           </Col>
         </Row>
 
